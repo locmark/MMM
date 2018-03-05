@@ -1,3 +1,7 @@
+//
+//    new solution - matrix class
+//
+
 class Matrix {
   constructor (x, y) {
     this._x = x
@@ -110,5 +114,53 @@ class Matrix {
     }
 
     return newM
+  }
+}
+
+//
+//    temporary solution - add methods to array class
+//
+
+function Array2d(y, x) {
+  let result = [];
+  for (var i = 0; i < y; i++) {
+    result.push(new Array(x));
+  }
+  return result.slice();
+}
+
+
+
+Array.prototype.Multiply = function(arr) {
+  let result = Array2d(this.length, arr[0].length);
+
+  for (var y = 0; y < result.length; y++) {
+    for (var x = 0; x < result[0].length; x++) {
+      result[y][x] = 0;
+      for (var i = 0; i < arr.length; i++) {
+        result[y][x] += this[y][i] * arr[i][x];
+      }
+    }
+  }
+
+  return result;
+}
+
+Array.prototype.Add = function(arr) {
+  let result = Array2d(this.length, this[0].length);
+
+  for (var y = 0; y < this.length; y++) {
+    for (var x = 0; x < this[0].length; x++) {
+      result[y][x] = this[y][x] + arr[y][x];
+    }
+  }
+  return result;
+}
+
+Array.prototype.Scale = function(a) {
+  for (var y = 0; y < this.length; y++) {
+    for (var x = 0; x < this[0].length; x++) {
+      this[y][x] *= a;
+    }
   }
 }
