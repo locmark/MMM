@@ -1,6 +1,4 @@
 window.onload = function () {
-  
-
   // initialization
   AMatrix = CalcAMatrix();
   BMatrix = CalcBMatrix();
@@ -31,31 +29,17 @@ window.onload = function () {
     return AX.Add(BU);
   }
 
-  function DrawPlot1Step(){
-    var c = document.getElementById("plot1");
-    var ctx = c.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(time*3,300 - XMatrix[0][0]*500,2,0,2*Math.PI);
-    ctx.stroke();
-  }
-
-  function DrawPlot1() {
-    var c = document.getElementById("plot1");
-    var ctx = c.getContext("2d");
-    ctx.moveTo(0,300);
-    ctx.lineTo(800,300);
-    ctx.stroke();
-  }
+  let plot1 = new Plot("plot1", 800, 600);
 
   function Step(){
     UMatrix = CalcUMatrix();
     XDMatrix = CalcXDMatrix();
     XDMatrix.Scale(1/10);
     XMatrix = XMatrix.Add(XDMatrix);  // very simple integration, by adding dX/dt to X (assuming that base was 1/10[second])
-    DrawPlot1Step();
+    plot1.AddPoint(XMatrix[0][0]);
+    plot1.DrawLastPoint();
     time++;
   }
 
-  DrawPlot1();
   setInterval(Step, 100);
 }
