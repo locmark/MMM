@@ -16,8 +16,8 @@ class Matrix {
     */
   }
 
-  height () { return this._h }
-  width () { return this._w }
+  get height () { return this._h }
+  get width () { return this._w }
   getV (x, y) { return this._values[x][y] }
   setV (x, y, v) {
     this._values[x][y] = v;
