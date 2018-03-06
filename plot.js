@@ -50,15 +50,16 @@ class Plot {
   AddPoint (value) {
     this.values.push(value);
     this.DrawLastPoint();
-    
 
     if (this.values.length > this.maxArg) {
       this.maxArg += 10;
       this.Redraw();
     }
 
+    if (Math.abs(value) > this.maxValue) {
+      this.maxValue = Math.abs(value);
+      this.Redraw();
+    }
   }
-
-
 
 }

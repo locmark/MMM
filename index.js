@@ -1,4 +1,34 @@
+function SetInputSignal(){
+  signalName = document.getElementById("signalSelect").value;
+  switch (signalName) {
+    case "step":
+      inputSignal = function () {
+        return 1;
+      }
+      break;
+    case "sin":
+      inputSignal = function () {
+        return Math.sin(2*Math.PI*frequency*time);
+      }
+      break;
+    case "triangle":
+      inputSignal = function () {
+        let T = 1/frequency;
+        t = time % T;
+        if (t < T/2)
+          return (amplitude*t*4/T)-1;
+        else
+          return (-amplitude*t*4/T)+3;
+      }
+      break;
+    default:
+
+  }
+}
+
 window.onload = function () {
+
+
   // initialization
   AMatrix = CalcAMatrix();
   BMatrix = CalcBMatrix();
@@ -19,7 +49,7 @@ window.onload = function () {
   }
 
   function CalcUMatrix(){
-    return [[Math.cos(2*Math.PI*0.02*time)]];
+    return [[inputSignal()]];
   }
 
   function CalcXDMatrix(){
@@ -30,16 +60,23 @@ window.onload = function () {
   }
 
   let plot1 = new Plot("plot1", 800, 600);
+  let plot2 = new Plot("plot2", 800, 600);
+  let inputPlot = new Plot("inputPlot", 800, 600);
 
   function Step(){
     UMatrix = CalcUMatrix();
+    inputPlot.AddPoint(UMatrix[0][0]);
+    inputPlot.DrawLastPoint();
     XDMatrix = CalcXDMatrix();
     XDMatrix.Scale(1/10);
     XMatrix = XMatrix.Add(XDMatrix);  // very simple integration, by adding dX/dt to X (assuming that base was 1/10[second])
     plot1.AddPoint(XMatrix[0][0]);
     plot1.DrawLastPoint();
+    plot2.AddPoint(XMatrix[1][0]);
+    plot2.DrawLastPoint();
     time++;
   }
 
+  SetInputSignal();
   setInterval(Step, 100);
 }
