@@ -14,6 +14,10 @@ class Plot {
     this.DrawLayout();
   }
 
+  Clear () {
+    this.canvas.clearRect(0, 0, this.width, this.height);
+  }
+
   DrawLayout () {
     this.canvas.moveTo(0, this.height/2);
     this.canvas.lineTo(this.width, this.height/2);
@@ -33,13 +37,28 @@ class Plot {
     this.DrawPoint(this.values.length - 1);
   }
 
+  Redraw () {
+    this.Clear();
+    this.DrawLayout();
+
+    for (var i = 0; i < this.values.length; i++) {
+      this.DrawPoint(i);
+    }
+
+  }
+
   AddPoint (value) {
     this.values.push(value);
-
-    if (this.values.length > this.maxArg)
-      this.maxArg += 10;
-
     this.DrawLastPoint();
+    
+
+    if (this.values.length > this.maxArg) {
+      this.maxArg += 10;
+      this.Redraw();
+    }
+
   }
+
+
 
 }
