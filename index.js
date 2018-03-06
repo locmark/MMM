@@ -3,12 +3,12 @@ function SetInputSignal(){
   switch (signalName) {
     case "step":
       inputSignal = function () {
-        return 1;
+        return amplitude;
       }
       break;
     case "sin":
       inputSignal = function () {
-        return Math.sin(2*Math.PI*frequency*time);
+        return amplitude*Math.sin(2*Math.PI*frequency*time);
       }
       break;
     case "triangle":
@@ -16,14 +16,24 @@ function SetInputSignal(){
         let T = 1/frequency;
         t = time % T;
         if (t < T/2)
-          return (amplitude*t*4/T)-1;
+          return amplitude*(t*4/T - 1);
         else
-          return (-amplitude*t*4/T)+3;
+          return amplitude*(-t*4/T + 3);
       }
       break;
     default:
 
   }
+}
+
+function SetFrequency () {
+  input = document.getElementById("frequency").value;
+  frequency = input;
+}
+
+function SetAmplitude () {
+  input = document.getElementById("amplitude").value;
+  amplitude = input;
 }
 
 window.onload = function () {

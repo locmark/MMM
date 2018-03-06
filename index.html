@@ -18,11 +18,17 @@
     <div class="signalSelect">
       <select id="signalSelect" onchange="SetInputSignal()">
         <option value="step">unit step</option>
-        <option value="sin">sin wave</option>
+        <option value="sin" selected="selected">sin wave</option>
         <option value="triangle">triangle wave</option>
       </select>
+      <label for="frequency">frequency</label>
+      <input type="text" name="frequency" id="frequency" value="0.01" onchange="SetFrequency()">
+      <label for="amplitude">amplitude</label>
+      <input type="text" name="amplitude" id="amplitude" value="1" onchange="SetAmplitude()">
     </div>
-    <button type="button" onclick="Step()">STEP</button>
+    <div class="simulationParams">
+
+    </div>
     <div class="matrixForm">
 
     </div>
