@@ -35,17 +35,17 @@ window.onload = function () {
   let plot2 = new Plot("plot2", 800, 600);
   let inputPlot = new Plot("inputPlot", 800, 600);
 
-  function Step(){
+  Step = function(){
     UMatrix = CalcUMatrix();
-    inputPlot.AddPoint(UMatrix[0][0]);
+    inputPlot.AddPoint(UMatrix[0][0], time);
     XDMatrix = CalcXDMatrix();
-    XDMatrix.Scale(1/10);
+    XDMatrix.Scale(1/sampleRate);
     XMatrix = XMatrix.Add(XDMatrix);  // very simple integration, by adding dX/dt to X (assuming that base was 1/10[second])
-    plot1.AddPoint(XMatrix[0][0]);
-    plot2.AddPoint(XMatrix[1][0]);
-    time++;
+    plot1.AddPoint(XMatrix[0][0], time);
+    plot2.AddPoint(XMatrix[1][0], time);
+    time += 1/sampleRate;
   }
 
   SetInputSignal();
-  setInterval(Step, 100);
+  mainLoop = setInterval(Step, 1000/sampleRate);
 }

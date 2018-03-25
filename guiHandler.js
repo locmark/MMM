@@ -27,11 +27,21 @@ function SetInputSignal(){
 }
 
 function SetFrequency () {
-  input = $("#frequency")[0].value;
-  frequency = input;
+  frequency = $("#frequency")[0].value;
 }
 
 function SetAmplitude () {
-  input = $("#amplitude")[0].value;
-  amplitude = input;
+  amplitude = $("#amplitude")[0].value;
+}
+
+function UpdateMainLoopInterval()
+{
+  clearInterval(mainLoop);
+  mainLoop = setInterval(Step, 1000/sampleRate);
+}
+
+function SetSampleRate()
+{
+  sampleRate = $("#sampleRate")[0].value;
+  UpdateMainLoopInterval();
 }

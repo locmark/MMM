@@ -1,4 +1,6 @@
 var time = 0;
+var sampleRate = 10;
+var simulationSpeed = 0.5;
 
 var C1 = 1;   // [F]
 var C2 = 2;   // [F]
@@ -9,9 +11,11 @@ var amplitude = 1;
 var frequency = 0.01;
 
 var inputSignal = function () {
-  return amplitude*Math.sin(2*Math.PI*frequency*time);
+  return amplitude*Math.sin(2*Math.PI*frequency*time/sampleRate);
 }
 
+var mainLoop;
+var Step;
 
 var AMatrix;
 var BMatrix;

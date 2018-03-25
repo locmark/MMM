@@ -30,7 +30,7 @@ class Plot {
     let x = (n - this.values.length) * frequency/3 * this.width + this.width*4/5;
     let y = this.height/2 - this.values[n] * this.height/2 / this.maxValue;
 
-    // old style - circles
+    /// old style - circles
     // let x = (n - this.values.length) * frequency/3 * this.width + this.width*4/5;
     // let y = this.height/2 - this.values[n] * this.height/2 / this.maxValue;
     // this.canvas.beginPath();
@@ -53,7 +53,7 @@ class Plot {
 
   }
 
-  AddPoint (value) {
+  AddPoint (value, time) {
     this.values.push(value);
 
     if (Math.abs(value) > this.maxValue) {

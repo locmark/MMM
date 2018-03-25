@@ -5,8 +5,9 @@
     <script src="matrix.js"></script>
     <script src="variables.js"></script>
     <script src="plot.js"></script>
-    <script src="guiHandler.js"></script>
+
     <script src="index.js"></script>
+    <script src="guiHandler.js"></script>
 
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
@@ -27,6 +28,10 @@
       <input type="text" name="frequency" id="frequency" value="0.01" onchange="SetFrequency()">
       <label for="amplitude">amplitude</label>
       <input type="text" name="amplitude" id="amplitude" value="1" onchange="SetAmplitude()">
+      <label for="sampleRate">sample rate</label>
+      <input type="text" name="sampleRate" id="sampleRate" value="10" onchange="SetSampleRate()">
+      <label for="simulationSpeed">simulation speed</label>
+      <input type="text" name="simulationSpeed" id="simulationSpeed" value="0.5" onchange="SetAmplitude()">
     </div>
     <div class="simulationParams">
 
