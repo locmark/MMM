@@ -1,7 +1,7 @@
 class Plot {
   constructor (canvasName, width, height) {
     this.canvasName = canvasName;
-    this.canvas = document.getElementById(this.canvasName).getContext("2d");
+    this.canvas = $("#" + this.canvasName)[0].getContext("2d");
 
     this.width = width;
     this.height = height;
