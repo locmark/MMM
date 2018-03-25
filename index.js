@@ -76,14 +76,11 @@ window.onload = function () {
   function Step(){
     UMatrix = CalcUMatrix();
     inputPlot.AddPoint(UMatrix[0][0]);
-    inputPlot.DrawLastPoint();
     XDMatrix = CalcXDMatrix();
     XDMatrix.Scale(1/10);
     XMatrix = XMatrix.Add(XDMatrix);  // very simple integration, by adding dX/dt to X (assuming that base was 1/10[second])
     plot1.AddPoint(XMatrix[0][0]);
-    plot1.DrawLastPoint();
     plot2.AddPoint(XMatrix[1][0]);
-    plot2.DrawLastPoint();
     time++;
   }
 
