@@ -23,12 +23,13 @@ class Plot {
     //this.canvas.stroke();
   }
 
-  DrawPoint (n) {
-    let xPerv = (n - 1 - this.values.length) * frequency/3 * this.width + this.width*4/5;
-    let yPerv = this.height/2 - this.values[n-1] * this.height/2 / this.maxValue;
 
-    let x = (n - this.values.length) * frequency/3 * this.width + this.width*4/5;
-    let y = this.height/2 - this.values[n] * this.height/2 / this.maxValue;
+  DrawPoint (n) {
+    let xPerv = (this.values[n-1].time - this.values[this.values.length - 1].time) * frequency/3 * this.width + this.width*4/5;
+    let yPerv = this.height/2 - this.values[n-1].value * this.height/2 / this.maxValue;
+
+    let x = (this.values[n].time - this.values[this.values.length - 1].time) * frequency/3 * this.width + this.width*4/5;
+    let y = this.height/2 - this.values[n].value * this.height/2 / this.maxValue;
 
     /// old style - circles
     // let x = (n - this.values.length) * frequency/3 * this.width + this.width*4/5;
@@ -54,7 +55,7 @@ class Plot {
   }
 
   AddPoint (value, time) {
-    this.values.push(value);
+    this.values.push({value: value, time: time});
 
     if (Math.abs(value) > this.maxValue) {
       this.maxValue = Math.abs(value);
