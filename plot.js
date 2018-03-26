@@ -31,12 +31,6 @@ class Plot {
     let x = (this.values[n].time - this.values[this.values.length - 1].time) * frequency/3 * this.width + this.width*4/5;
     let y = this.height/2 - this.values[n].value * this.height/2 / this.maxValue;
 
-    /// old style - circles
-    // let x = (n - this.values.length) * frequency/3 * this.width + this.width*4/5;
-    // let y = this.height/2 - this.values[n] * this.height/2 / this.maxValue;
-    // this.canvas.beginPath();
-    // this.canvas.arc(x, y, 2, 0, 2*Math.PI); // x y r angle_begin angle_end
-
     this.canvas.moveTo(xPerv, yPerv);
     this.canvas.lineTo(x, y);
 

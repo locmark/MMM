@@ -1,3 +1,5 @@
+var phase = 0;
+
 function SetInputSignal(){
   signalName = $("#signalSelect")[0].value;
   switch (signalName) {
@@ -8,7 +10,8 @@ function SetInputSignal(){
       break;
     case "sin":
       inputSignal = function () {
-        return amplitude*Math.sin(2*Math.PI*frequency*time);
+        phase += 2*Math.PI*frequency/(sampleRate*simulationSpeed);
+        return amplitude*Math.sin(phase);
       }
       break;
     case "triangle":
@@ -34,14 +37,16 @@ function SetAmplitude () {
   amplitude = $("#amplitude")[0].value;
 }
 
-function UpdateMainLoopInterval()
-{
+function UpdateMainLoopInterval () {
   clearInterval(mainLoop);
   mainLoop = setInterval(Step, 1000/sampleRate);
 }
 
-function SetSampleRate()
-{
+function SetSampleRate () {
   sampleRate = $("#sampleRate")[0].value;
   UpdateMainLoopInterval();
+}
+
+function SetSimulationSpeed (){
+  simulationSpeed = $("#simulationSpeed")[0].value;
 }

@@ -37,13 +37,13 @@ window.onload = function () {
 
   Step = function(){
     UMatrix = CalcUMatrix();
-    inputPlot.AddPoint(UMatrix[0][0], time);
     XDMatrix = CalcXDMatrix();
-    XDMatrix.Scale(1/sampleRate);
-    XMatrix = XMatrix.Add(XDMatrix);  // very simple integration, by adding dX/dt to X (assuming that base was 1/10[second])
+    XDMatrix.Scale(1/(sampleRate*simulationSpeed));
+    XMatrix = XMatrix.Add(XDMatrix);  // very simple integration, by adding scaled dX/dt to X
+    inputPlot.AddPoint(UMatrix[0][0], time);
     plot1.AddPoint(XMatrix[0][0], time);
     plot2.AddPoint(XMatrix[1][0], time);
-    time += 1/sampleRate;
+    time += 1/(sampleRate*simulationSpeed);
   }
 
   SetInputSignal();
