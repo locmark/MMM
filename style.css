@@ -1,0 +1,25 @@
+body {
+    //background-color: #2d2d2d;
+}
+
+.bigHeader {
+    font-size: 25px;
+    //color: white;
+}
+
+.normalHeader{
+    font-size: 18px;
+    //color: white;
+}
+
+.plot1{
+   // background-color: white; 
+}
+
+.plot2{
+   // background-color: white;  
+}
+
+.inputPlot{
+   // background-color: white; 
+}

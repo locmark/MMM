@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <script src="jquery-3.3.1.min.js"></script>
@@ -14,39 +14,66 @@
     <title>Projekt na rzecz MMM</title>
   </head>
   <body>
+    <h1 class="bigHeader">
+        RC Phase Shifter Simulator
+    </h1>
+    <h2 class="normalHeader">
+        Circuit topology:
+    </h2>
     <div class="schematic">
-      U + RC + RC
-      someday...
+        <img src = "RCRC.jpg" style = "width: 16%" />
     </div>
-    <div class="signalSelect">
-      <select id="signalSelect" onchange="SetInputSignal()">
-        <option value="step">unit step</option>
-        <option value="sin" selected="selected">sin wave</option>
-        <option value="triangle">triangle wave</option>
-      </select>
-      <label for="frequency">frequency</label>
-      <input type="text" name="frequency" id="frequency" value="0.1" onchange="SetFrequency()">
-      <label for="amplitude">amplitude</label>
-      <input type="text" name="amplitude" id="amplitude" value="1" onchange="SetAmplitude()">
-      <label for="sampleRate">sample rate</label>
-      <input type="text" name="sampleRate" id="sampleRate" value="100" onchange="SetSampleRate()">
-      <label for="simulationSpeed">simulation speed</label>
-      <input type="text" name="simulationSpeed" id="simulationSpeed" value="0.5" onchange="SetSimulationSpeed()">
-    </div>
-    <div class="simulationParams">
+    <h2 class="normalHeader">
+        Simulation parameters:
+    </h2>
+      <div class="simulationParams">
+          <label for="sampleRate">Steps per second:</label>
+          <input size="5" type="text" name="sampleRate" id="sampleRate" value="100" onchange="SetSampleRate()">
+          <label for="simulationSpeed">Simulation speed:</label>
+          <input size="5" type="text" name="simulationSpeed" id="simulationSpeed" value="0.5" onchange="SetSimulationSpeed()">
+          <button onclick="RestartSimulation()">Restart simulation</button>
+      </div>
+      <h2 class="normalHeader">
+          Input signal parameters:
+      </h2>
+      <div class="simulationParams">
+          <select id="signalSelect" onchange="SetInputSignal()">
+              <option value="step">Unit step</option>
+              <option value="sin" selected="selected">Sine</option>
+              <option value="square">Square</option>
+              <option value="triangle">Triangle</option>
+          </select>
+          <label for="frequency">Frequency:</label>
+          <input size="5" type="text" name="frequency" id="frequency" value="1" onchange="SetFrequency()">
+          <label for="amplitude">Amplitude:</label>
+          <input size="5" type="text" name="amplitude" id="amplitude" value="1" onchange="SetAmplitude()">
+      </div>
+      <h2 class="normalHeader">
+            Components' values:
+      </h2>
+      <div class="simulationParams">
+          <label for="R1">R1:</label>
+          <input size="5" type="text" name="R1" id="R1" value="1" onchange="SetR1()">
+          <label for="C1">C1:</label>
+          <input size="5" type="text" name="C1" id="C1" value="1" onchange="SetC1()">
+          <label for="R2">R2:</label>
+          <input size="5" type="text" name="R2" id="R2" value="1" onchange="SetR2()">
+          <label for="C2">C2:</label>
+          <input size="5" type="text" name="C2" id="C2" value="1" onchange="SetC2()">
 
-    </div>
+      </div>
     <div class="matrixForm">
 
     </div>
     <div class="inputPlot" style="display: inline-block;">
-      <canvas id="inputPlot" width="800" height="600" style="border:1px solid #000000;"></canvas>
+        <br />
+      <canvas id="inputPlot" width="400" height="300" style="border:1px solid #000000;"></canvas>
     </div>
     <div class="plot1" style="display: inline-block;">
-      <canvas id="plot1" width="800" height="600" style="border:1px solid #000000;"></canvas>
+      <canvas id="plot1" width="400" height="300" style="border:1px solid #000000;"></canvas>
     </div>
     <div class="plot2" style="display: inline-block;">
-      <canvas id="plot2" width="800" height="600" style="border:1px solid #000000;"></canvas>
+      <canvas id="plot2" width="400" height="300" style="border:1px solid #000000;"></canvas>
     </div>
   </body>
 
